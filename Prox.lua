@@ -788,22 +788,6 @@ end
 --     Source Prox     --
 function riomoned(chat_id, user_id, msg_id, text, offset, length) local tt = DevRio:get(Prox..'endmsg') or '' tdcli_function ({ ID = "SendMessage", chat_id_ = chat_id, reply_to_message_id_ = msg_id, disable_notification_ = 0, from_background_ = 1, reply_markup_ = nil, input_message_content_ = { ID = "InputMessageText", text_ = text..'\n\n'..tt, disable_web_page_preview_ = 1, clear_draft_ = 0, entities_ = {[0]={ ID="MessageEntityMentionName", offset_=offset, length_=length, user_id_=user_id }, }, }, }, dl_cb, nil) end
 --     Source Prox     --
-function SourceCh(msg) 
-local url,res = https.request('https://ccccxcc.ml/Prox/SourceCh.php?id='..msg.sender_user_id_)
-data = JSON.decode(url)
-if data.ChatMember.Prox ~= true then
-Var = false
-Text = "*᥀︙عذرا لاتستطيع استخدام البوت !\n᥀︙عليك الاشتراك في قناة السورس اولا :*"
-keyboard = {} 
-keyboard.inline_keyboard = {{{text="᥀ Prox : Team .",url="t.me/rrrrwv"}}} 
-Msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..msg.chat_id_..'&text=' .. URL.escape(Text).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-else
-Var = true
-end
-return Var
-end
---     Source Prox     --
 function ChCheck(msg)
 local var = true 
 if DevRio:get(Prox.."Rio:ChId") then
@@ -4512,7 +4496,7 @@ DevRio:set(Prox..'Rio:viewget'..msg.sender_user_id_,true)
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙حسنا قم باعادة توجيه للمنشور الذي تريدني حساب مشاهداته', 1, 'md')
 end
 --     Source Prox     --
-if text == "سورس" and SourceCh(msg) or text == "السورس" and SourceCh(msg) or text == "يا سورس" and SourceCh(msg) or text == "↫  السورس ᥀" and SourceCh(msg) then
+if text == "سورس" and ChCheck(msg) or text == "السورس" and ChCheck(msg) or text == "يا سورس" and ChCheck(msg) or text == "↫  السورس ᥀" and ChCheck(msg) then
 Text = [[
 Welcome To Source
 ᥀︙[Prox Team](https://t.me/rrrrwv)
@@ -7877,12 +7861,12 @@ end end
 end
 end
 --     Source Prox     --
-if text == "تفعيل امسح" and Constructor(msg) and SourceCh(msg) then
+if text == "تفعيل امسح" and Constructor(msg) and ChCheck(msg) then
 local ProxTEAM = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل امسح بنجاح'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTEAM, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:Lock:Clean'..msg.chat_id_,true)  
 end
-if text == "تعطيل امسح" and Constructor(msg) and SourceCh(msg) then
+if text == "تعطيل امسح" and Constructor(msg) and ChCheck(msg) then
 local ProxTEAM = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل امسح بنجاح'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTEAM, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:Lock:Clean'..msg.chat_id_) 
@@ -9106,7 +9090,7 @@ riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(ms
 DevRio:set(Prox..'Rio:Mean:Rio'..msg.chat_id_,true)  
 end
 if not DevRio:get(Prox..'Rio:Mean:Rio'..msg.chat_id_) then
-if text and text:match("^معنى الاسم (.*)$") and SourceCh(msg) or text and text:match("^معنى اسم (.*)$") and SourceCh(msg) then 
+if text and text:match("^معنى الاسم (.*)$") and ChCheck(msg) or text and text:match("^معنى اسم (.*)$") and ChCheck(msg) then 
 local TextMean = text:match("^معنى الاسم (.*)$") or text:match("^معنى اسم (.*)$") 
 UrlMean = https.request('https://apiabs.ml/Mean.php?Abs='..URL.escape(TextMean)) 
 Mean = JSON.decode(UrlMean) 
@@ -9115,17 +9099,17 @@ Dev_Rio(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end
 end
 --     Source Prox     --
-if text == "تفعيل متحركه" and Manager(msg) and SourceCh(msg) or text == "تفعيل المتحركه" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل متحركه" and Manager(msg) and ChCheck(msg) or text == "تفعيل المتحركه" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل المتحركه'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:gif:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل متحركه" and Manager(msg) and SourceCh(msg) or text == "تعطيل المتحركه" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل متحركه" and Manager(msg) and ChCheck(msg) or text == "تعطيل المتحركه" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل المتحركه'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:gif:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "متحركه" or text == "↫ متحركه ᥀") and not DevRio:get(Prox..'Rio:gif:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "متحركه" or text == "↫ متحركه ᥀") and not DevRio:get(Prox..'Rio:gif:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,1075); 
 local Text ='*᥀︙تم اختيار المتحركه لك*'
 keyboard = {}  
@@ -9133,20 +9117,20 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendanimation?chat_id=' .. msg.chat_id_ .. '&animation=https://t.me/GifProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendanimation?chat_id=' .. msg.chat_id_ .. '&animation=https://t.me/GifDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل ميمز" and Manager(msg) and SourceCh(msg) or text == "تفعيل الميمز" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل ميمز" and Manager(msg) and ChCheck(msg) or text == "تفعيل الميمز" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الميمز'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:memz:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل ميمز" and Manager(msg) and SourceCh(msg) or text == "تعطيل الميمز" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل ميمز" and Manager(msg) and ChCheck(msg) or text == "تعطيل الميمز" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الميمز'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:memz:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "ميمز" or text == "↫ ميمز ᥀") and not DevRio:get(Prox..'Rio:memz:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "ميمز" or text == "↫ ميمز ᥀") and not DevRio:get(Prox..'Rio:memz:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,1201); 
 local Text ='*᥀︙تم اختيار مقطع الميمز لك*'
 keyboard = {}  
@@ -9154,20 +9138,20 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/MemzProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/MemzDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل غنيلي" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل غنيلي" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل غنيلي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:Audios:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل غنيلي" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل غنيلي" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل غنيلي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:Audios:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "غنيلي" or text == "↫ غنيلي ᥀") and not DevRio:get(Prox..'Rio:Audios:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "غنيلي" or text == "↫ غنيلي ᥀") and not DevRio:get(Prox..'Rio:Audios:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(4,2725); 
 local Text ='*᥀︙تم اختيار المقطع الصوتي لك*'
 keyboard = {}  
@@ -9175,20 +9159,20 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/AudiosProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/AudiosDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل الاغاني" and Manager(msg) and SourceCh(msg) or text == "تفعيل اغنيه" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل الاغاني" and Manager(msg) and ChCheck(msg) or text == "تفعيل اغنيه" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الاغاني'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:mp3:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل الاغاني" and Manager(msg) and SourceCh(msg) or text == "تعطيل اغنيه" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل الاغاني" and Manager(msg) and ChCheck(msg) or text == "تعطيل اغنيه" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الاغاني'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:mp3:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "اغنيه" or text == "↫ اغنيه ᥀" or text == "اغاني") and not DevRio:get(Prox..'Rio:mp3:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "اغنيه" or text == "↫ اغنيه ᥀" or text == "اغاني") and not DevRio:get(Prox..'Rio:mp3:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,1167); 
 local Text ='*᥀︙تم اختيار الاغنيه لك*'
 keyboard = {}  
@@ -9199,17 +9183,17 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/ProxMp3/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل ريمكس" and Manager(msg) and SourceCh(msg) or text == "تفعيل الريمكس" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل ريمكس" and Manager(msg) and ChCheck(msg) or text == "تفعيل الريمكس" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الريمكس'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:Remix:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل ريمكس" and Manager(msg) and SourceCh(msg) or text == "تعطيل الريمكس" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل ريمكس" and Manager(msg) and ChCheck(msg) or text == "تعطيل الريمكس" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الريمكس'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:Remix:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "ريمكس" or text == "↫ ريمكس ᥀") and not DevRio:get(Prox..'Rio:Remix:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "ريمكس" or text == "↫ ريمكس ᥀") and not DevRio:get(Prox..'Rio:Remix:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,612); 
 local Text ='*᥀︙تم اختيار الريمكس لك*'
 keyboard = {}  
@@ -9217,20 +9201,20 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/RemixProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/RemixDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل صوره" and Manager(msg) and SourceCh(msg) or text == "تفعيل الصوره" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل صوره" and Manager(msg) and ChCheck(msg) or text == "تفعيل الصوره" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الصوره'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:Photo:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل صوره" and Manager(msg) and SourceCh(msg) or text == "تعطيل الصوره" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل صوره" and Manager(msg) and ChCheck(msg) or text == "تعطيل الصوره" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الصوره'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:Photo:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "صوره" or text == "↫ صوره ᥀") and not DevRio:get(Prox..'Rio:Photo:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "صوره" or text == "↫ صوره ᥀") and not DevRio:get(Prox..'Rio:Photo:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(4,1122); 
 local Text ='*᥀︙تم اختيار الصوره لك*'
 keyboard = {}  
@@ -9238,20 +9222,20 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/PhotosProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/PhotosDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل انمي" and Manager(msg) and SourceCh(msg) or text == "تفعيل الانمي" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل انمي" and Manager(msg) and ChCheck(msg) or text == "تفعيل الانمي" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الانمي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:Anime:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل انمي" and Manager(msg) and SourceCh(msg) or text == "تعطيل الانمي" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل انمي" and Manager(msg) and ChCheck(msg) or text == "تعطيل الانمي" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الانمي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:Anime:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "انمي" or text == "↫ انمي ᥀") and not DevRio:get(Prox..'Rio:Anime:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "انمي" or text == "↫ انمي ᥀") and not DevRio:get(Prox..'Rio:Anime:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(3,1002); 
 local Text ='*᥀︙تم اختيار صورة الانمي لك*'
 keyboard = {}  
@@ -9259,15 +9243,15 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/AnimeProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/AnimeDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل فلم" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل فلم" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الافلام'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:Movies:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل فلم" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل فلم" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الافلام'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:Movies:Rio'..msg.chat_id_,true)  
@@ -9280,20 +9264,20 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/MoviesProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/MoviesDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
-if text == "تفعيل مسلسل" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل مسلسل" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل المسلسلات'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Prox..'Rio:Series:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل مسلسل" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل مسلسل" and Manager(msg) and ChCheck(msg) then
 local ProxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل المسلسلات'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ProxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Prox..'Rio:Series:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "مسلسل" or text == "↫ مسلسل ᥀") and not DevRio:get(Prox..'Rio:Series:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "مسلسل" or text == "↫ مسلسل ᥀") and not DevRio:get(Prox..'Rio:Series:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,54); 
 local Text ='*᥀︙تم اختيار المسلسل لك*'
 keyboard = {}  
@@ -9301,7 +9285,7 @@ keyboard.inline_keyboard = {
 {{text = '᥀ Prox Team .',url="t.me/rrrrwv"}},
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/SeriesProx/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/SeriesDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Prox     --
 if Admin(msg) then
@@ -10892,7 +10876,7 @@ Dev_Rio(msg.chat_id_, msg.id_, 1, (Help or Text), 1, 'md')
 end
 --     Source Prox     --
 if SecondSudo(msg) then
-if text == "تحديث السورس" and SourceCh(msg) or text == "تحديث سورس" and SourceCh(msg) or text == "↫ تحديث السورس ᥀" and SourceCh(msg) then 
+if text == "تحديث السورس" and ChCheck(msg) or text == "تحديث سورس" and ChCheck(msg) or text == "↫ تحديث السورس ᥀" and ChCheck(msg) then 
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙جاري تحديث سورس بروكس', 1, 'md') 
 os.execute('rm -rf Prox.lua') 
 os.execute('wget https://raw.githubusercontent.com/ProxTeam8/Prox/master/Prox.lua') 
@@ -10901,7 +10885,7 @@ io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙تم التحديث الى الاصدار الجديد', 1, 'md') 
 end
-if text == 'تحديث' and SourceCh(msg) or text == 'تحديث البوت' and SourceCh(msg) or text == '↫ تحديث ᥀' and SourceCh(msg) then  
+if text == 'تحديث' and ChCheck(msg) or text == 'تحديث البوت' and ChCheck(msg) or text == '↫ تحديث ᥀' and ChCheck(msg) then  
 dofile('Prox.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
@@ -11145,7 +11129,7 @@ else
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙لم يتم تعيين قناة الاشتراك الاجباري \n᥀︙ارسل ↫ تعيين قناة الاشتراك للتعيين ', 1, 'md')
 end end end end
 --     Source Prox     --
-if text == 'القناة' and SourceCh(msg) or text == 'قناة السورس' and SourceCh(msg) or text == 'قناه السورس' and SourceCh(msg) or text == 'قنات السورس' and SourceCh(msg) or text == '↫ قناة السورس ᥀' and SourceCh(msg) then 
+if text == 'القناة' and ChCheck(msg) or text == 'قناة السورس' and ChCheck(msg) or text == 'قناه السورس' and ChCheck(msg) or text == 'قنات السورس' and ChCheck(msg) or text == '↫ قناة السورس ᥀' and ChCheck(msg) then 
 Text = [[
 ᥀︙[قناة السورس](https://t.me/rrrrwv)
 ]]
@@ -11158,7 +11142,7 @@ https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' ..
 return false
 end
 --     Source Prox     --
-if text == "مبرمج السورس" and SourceCh(msg) or text == "مطور السورس" and SourceCh(msg) or text == "وين المبرمج" and SourceCh(msg) or text == "المبرمج" and SourceCh(msg) or text == "↫ مبرمج السورس ᥀" and SourceCh(msg) then 
+if text == "مبرمج السورس" and ChCheck(msg) or text == "مطور السورس" and ChCheck(msg) or text == "وين المبرمج" and ChCheck(msg) or text == "المبرمج" and ChCheck(msg) or text == "↫ مبرمج السورس ᥀" and ChCheck(msg) then 
 Text = [[
 ᥀︙[مبرمج السورس](https://t.me/LEEEE9)
 ]]
