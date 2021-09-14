@@ -3,7 +3,7 @@ THIS_DIR=$(cd $(dirname $0); pwd)
 Version=`lsb_release -rs | cut -f1 -d"."`
 install() {
 echo -e "\033[0;36m"
-echo -e "~ Welcome To Source Prox - اهلا بك في سورس بروكس ~"
+echo -e "~ Welcome To Source Snap - اهلا بك في سورس سناب ~"
 echo -e "     ~ { Setting Up Offices - جاري رفع المكاتب } ~"
 echo -e "\033[0m"
 sudo apt-get update -y
@@ -53,7 +53,7 @@ echo -e "  $$ |      $$ |      \$$$$$$  |$$  /\$$\ "
 echo -e "  \__|      \__|       \______/ \__/  \__|"
 echo -e "\033[0m"
 cd $THIS_DIR && sudo chmod +x tg
-lua Prox.lua
+lua Snap.lua
 }
 if [ "$1" = "install" ]; then
 install
@@ -63,5 +63,5 @@ echo -e "\033[0;31m\n~ The tg File Was Not Found In The Bot Files\n\033[0;33m"
 exit 1
 fi
 cd $THIS_DIR && sudo chmod +x tg
-lua Prox.lua
+lua Snap.lua
 fi
